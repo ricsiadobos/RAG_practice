@@ -1,5 +1,4 @@
-﻿
-namespace RAG.Core.Models
+﻿namespace RAG.Core.Models
 {
     public sealed class SourceRef
     {

@@ -332,6 +332,13 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+# --- Saját kiegészítés ---
+# Fejlesztői beállítások és titkok
+Backend/RAG.Api/appsettings.json
+Backend/RAG.Api/appsettings.Development.json
+Backend/RAG.Api/Properties/launchSettings.json
+Backend/RAG.Api/Program.cs
+
 # OpenCover UI analysis results
 OpenCover/
 

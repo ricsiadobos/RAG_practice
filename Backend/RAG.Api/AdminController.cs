@@ -21,10 +21,9 @@ public class AdminController : ControllerBase
     [HttpPost("seed")]
     public async Task<IActionResult> Seed(CancellationToken ct)
     {
-        // 1) gondoskodjunk róla, hogy a store inicializált legyen
         await _store.InitAsync(ct);
 
-        // 2) dummy tartalmak
+        // dummy
         var chunks = new List<DocChunk>
         {
             new DocChunk {
