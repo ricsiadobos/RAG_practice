@@ -10,6 +10,7 @@ namespace RAG.Infrastructure.Data.Entities
 
         public DbSet<Document> Documents { get; set; } = null!;
         public DbSet<Chunk> Chunks { get; set; } = null!;
+        public DbSet<Embedding> Embeddings { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,23 @@ namespace RAG.Infrastructure.Data.Entities
                  .HasForeignKey(c => c.DocumentId)
                  .OnDelete(DeleteBehavior.Cascade);
                 e.HasIndex(c => new { c.DocumentId, c.Ordinal });
+            });
+
+            modelBuilder.Entity<Embedding>(e =>
+            {
+                e.HasKey(x => x.Id);
+
+                e.HasOne(x => x.Chuck)
+                .WithOne()
+                .HasForeignKey<Embedding>(x => x.ChunkId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                e.Property(x => x.Model).HasMaxLength(100);
+                e.Property(x => x.Vector).HasColumnType("varbinary(max)");
+
+                //gyors keresés a ChunkId-re
+                e.HasIndex(x => x.ChunkId).IsUnique();
+
             });
         }
     }
